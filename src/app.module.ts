@@ -6,13 +6,17 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
+import { ArticlesModule } from './articles/articles.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    MongooseModule.forRoot(process.env.MONGO_URI || 'mongodb://localhost/nest-auth'),
+    MongooseModule.forRoot(
+      process.env.MONGO_URI || 'mongodb://localhost/nest-auth',
+    ),
     UsersModule,
     AuthModule,
+    ArticlesModule,
   ],
 })
 export class AppModule {}
