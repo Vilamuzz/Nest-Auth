@@ -8,9 +8,11 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  ConfigModule.forRoot({ isGlobal: true }),
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.MONGO_URI || 'mongodb://localhost/nest-auth'),
     UsersModule,
-    imports: [AuthModule],
+    AuthModule,
+  ],
 })
 export class AppModule {}
