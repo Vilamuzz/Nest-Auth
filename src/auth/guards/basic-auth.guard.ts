@@ -27,7 +27,7 @@ export class BasicAuthGuard implements CanActivate {
     }
 
     const user = await this.usersService.validateUser(email, password);
-    request.user = user; // attach user to request
+    request.user = user;
     return true;
   }
 }

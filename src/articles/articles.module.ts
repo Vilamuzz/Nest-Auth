@@ -3,6 +3,8 @@ import { ArticlesService } from './articles.service';
 import { ArticlesController } from './articles.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ArticleSchema } from './entities/article.entity';
+import { UsersModule } from '../users/users.module';
+import { BasicAuthGuard } from '../auth/guards/basic-auth.guard';
 
 @Module({
   imports: [
@@ -12,8 +14,9 @@ import { ArticleSchema } from './entities/article.entity';
         schema: ArticleSchema,
       },
     ]),
+    UsersModule,
   ],
   controllers: [ArticlesController],
-  providers: [ArticlesService],
+  providers: [ArticlesService, BasicAuthGuard],
 })
 export class ArticlesModule {}

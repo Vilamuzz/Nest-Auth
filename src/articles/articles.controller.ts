@@ -11,12 +11,18 @@ import {
 import { ArticlesService } from './articles.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiTags,
+  ApiBasicAuth,
+} from '@nestjs/swagger';
 import { Article } from './entities/article.entity';
 import { BasicAuthGuard } from 'src/auth/guards/basic-auth.guard';
 
 @Controller('articles')
 @ApiTags('articles')
+@ApiBasicAuth('basic')
 @UseGuards(BasicAuthGuard)
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
