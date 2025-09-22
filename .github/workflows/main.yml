@@ -1,0 +1,43 @@
+name: CI with pnpm
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout kode
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      # 3. Install pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9 # sesuaikan dengan versi pnpm Anda
+
+      # 4. Install dependencies
+      - name: Install dependencies
+        run: pnpm install
+
+      # 5. Build project
+      - name: Build project
+        run: pnpm build
+
+      # 6. Jalankan testing
+      - name: Run tests
+        run: pnpm test
