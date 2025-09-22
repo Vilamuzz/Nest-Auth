@@ -28,7 +28,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9 # sesuaikan dengan versi pnpm Anda
+          version: 10.16.1 # sesuaikan dengan versi pnpm Anda
 
       # 4. Install dependencies
       - name: Install dependencies
