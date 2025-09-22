@@ -1,19 +1,23 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import cookieParser from 'cookie-parser';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.use(cookieParser());
+
   const config = new DocumentBuilder()
-    .setTitle('Auth API')
-    .setDescription('Authentication API description')
+    .setTitle('My API')
+    .setDescription('Cookie-based Authentication')
     .setVersion('1.0')
-    .addBearerAuth()
+    .addCookieAuth('auth-cookie', { type: 'apiKey', in: 'cookie' })
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(3000);
 }
 bootstrap();
