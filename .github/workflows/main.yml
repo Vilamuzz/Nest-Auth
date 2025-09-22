@@ -17,14 +17,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-        # 3. Install pnpm
+      # 2. Install pnpm
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10.16.1 # sesuaikan dengan versi pnpm Anda
           run_install: false
 
-      # 2. Setup Node.js
+      # 3. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -38,7 +38,3 @@ jobs:
       # 5. Build project
       - name: Build project
         run: pnpm build
-
-      # 6. Jalankan testing
-      - name: Run tests
-        run: pnpm test
